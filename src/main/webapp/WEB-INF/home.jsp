@@ -20,24 +20,12 @@
 <h2>
     Hello ${username}
 </h2>
-<table style="background-color: antiquewhite">
+<c:forEach var="user" items="${users}">
     <tr>
-        <th>username</th>
-        <th>firstname</th>
-        <th>lastname<th>
+        <td class="py-2">${user.id}</td>
+        <td class="py-2">${user.firstname}</td>
+        <td class="py-2">${user.lastname}</td>
     </tr>
-
-    <c:forEach items="${userListMap}" var="usr" varStatus="idx">
-        <tr>
-            <td>${usr.username}</td><td>${usr.firstname}</td> <td>${usr.lastname}</td>
-        </tr>
-    </c:forEach>
-</table>
-<form action="/logout" method="get">
-    <button type="submit">Logout</button>
-</form>
-<form action = "/addUser" method = "get">
-    <button type = "submit">AddUser</button>
-</form>
+</c:forEach>
 </body>
 </html>
