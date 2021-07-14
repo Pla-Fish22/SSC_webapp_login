@@ -37,6 +37,7 @@ public class SecurityService {
         User user = userService.findByUsername(username);
         if (user != null && BCrypt.checkpw(password, user.getPassword())) {
             HttpSession session = request.getSession();
+            System.out.println(username);
             session.setAttribute("username", username);
             return true;
         } else {

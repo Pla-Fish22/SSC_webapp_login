@@ -11,7 +11,6 @@ public class LoginServlet extends AbstractRoutableHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/login.jsp");
-        RequestDispatcher requestDispatcher2 = request.getRequestDispatcher("WEB-INF/styles.css");
         requestDispatcher.include(request, response);
     }
 

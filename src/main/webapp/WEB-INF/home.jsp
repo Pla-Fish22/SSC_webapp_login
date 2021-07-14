@@ -6,26 +6,79 @@
 <html>
 <head>
     <title>Home Page</title>
-    <style>
-        h1{
-            color: darkmagenta;
-            font-family: Papyrus;
-        }
-        body{
-            background-color: slategray;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
 </head>
-<body>
-<h2>
-    Hello ${username}
-</h2>
-<c:forEach var="user" items="${users}">
+<body class="bg-dark">
+<div class="container mt-4">
+    <body>
+    <div class="container">
+        <nav class="navbar navbar-dark navbar-expand-lg  bg-Dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">SSC - Login Webapp</a>
+                <a class="btn btn-light pull-right" type="button" href="/logout">
+                    <i class="fa fa-sign-out"></i> &nbsp; Logout
+                </a>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="col-12">
+                <h3 class="my-4 text-light">Welcome, ${username}</h3>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <a class="btn btn-info" type="button" href="/change">
+                    <i class="fa fa-pencil-square-o"></i>&nbsp; Change Password
+                </a>
+                <a class="btn btn-success px-4" type="button" href="/addUser">
+                    <i class="fa fa-user"></i> &nbsp; Add User
+                </a>
+            </div>
+        </div>
+
+<table class="table table-striped table-secondary">
+    <thead class="thead-dark">
     <tr>
-        <td class="py-2">${user.id}</td>
-        <td class="py-2">${user.firstname}</td>
-        <td class="py-2">${user.lastname}</td>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Actions</th>
     </tr>
-</c:forEach>
+    </thead>
+    <tbody>
+    <c:forEach var="user" items="${users}">
+        <tr>
+            <td class="py-3">${user.id}</td>
+            <td class="py-3">${user.username}</td>
+            <td class="py-3">${user.firstname}</td>
+            <td class="py-3">${user.lastname}</td>
+            <td class="align-middle">
+            <div>
+                <a class="btn btn-warning btn-sm" type="button" href="/user/edit?username=${user.username}">
+                    <i class="fa fa-pencil"></i>
+                </a>
+            <c:if test="${user.username != currentUser.username}">
+                <button
+                        class="btn btn-danger btn-sm"
+                        type="button" href="/user/delete?username=${user.username}"
+                        data-bs-toggle="modal"
+                        data-bs-target="#delete-modal-${user.id}">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </c:if>
+            </div>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+</body>
+</div>
 </body>
 </html>
