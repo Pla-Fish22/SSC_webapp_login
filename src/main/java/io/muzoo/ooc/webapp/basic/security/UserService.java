@@ -20,6 +20,7 @@ public class UserService {
     private final String FIND_ONE_QUERY = "SELECT * FROM user_tbl where username = ?;";
     private final String FIND_ALL_QUERY = "SELECT * FROM user_tbl;";
     private final String INSERT_USER_QUERY = "INSERT INTO user_tbl (username, password, firstname,lastname) VALUES (?,?,?,?);";
+    private final String DELETE_USER_QUERY = "DELETE FROM user_tbl where username=?;";
 
     public User findByUsername(String username){
         try {
@@ -109,6 +110,22 @@ public class UserService {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public void deleteUser(String username){
+        try {
+            Connection connection = databaseManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(DELETE_USER_QUERY);
+            ps.setString(1, username);
+            ps.executeUpdate();
+            connection.commit();
+            ps.close();
+            connection.close();
+        } catch (Exception e) {
+            return;
+        }
+
+
     }
     
     

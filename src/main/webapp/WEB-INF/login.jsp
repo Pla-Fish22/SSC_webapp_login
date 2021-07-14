@@ -13,21 +13,21 @@
     <div class="row justify-content-md-center h-100">
         <div class="col-sm-12 col-md-6 col-lg-4 my-auto">
             <h2 class="text-light" >Login</h2>
-            <p class="text-danger"></p>
+            <p class="text-danger">${error}</p>
             <form action="/login" method="post">
                 <div class="input-group mb-4 input-group-md">
                     <span class="input-group-text" id="username" style="width: 40px">
                         <i class="fa fa-user-circle-o"></i>
                     </span>
                     <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username"
-                           aria-describedby="username">
+                           aria-describedby="username" required>
                 </div>
                 <div class="input-group mb-4 input-group-md">
                     <span class="input-group-text" id="password" style="width: 40px">
                         <i class="fa fa-keyboard-o"></i>
                     </span>
                     <input type="password" class="form-control" name="password" placeholder="Password"
-                           aria-label="Password" aria-describedby="password">
+                           aria-label="Password" aria-describedby="password" required>
                 </div>
                 <div class="d-grid gap-2">
                     <button class="btn btn-info" type="submit"><i class="fa fa-sign-in"></i>Login</button>

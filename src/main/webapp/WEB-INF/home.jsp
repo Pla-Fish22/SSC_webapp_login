@@ -15,7 +15,6 @@
 </head>
 <body class="bg-dark">
 <div class="container mt-4">
-    <body>
     <div class="container">
         <nav class="navbar navbar-dark navbar-expand-lg  bg-Dark">
             <div class="container-fluid">
@@ -36,7 +35,7 @@
                     <i class="fa fa-pencil-square-o"></i>&nbsp; Change Password
                 </a>
                 <a class="btn btn-success px-4" type="button" href="/addUser">
-                    <i class="fa fa-user"></i> &nbsp; Add User
+                    <i class="fa fa-plus"></i> &nbsp; Add User
                 </a>
             </div>
         </div>
@@ -60,25 +59,23 @@
             <td class="py-3">${user.lastname}</td>
             <td class="align-middle">
             <div>
-                <a class="btn btn-warning btn-sm" type="button" href="/user/edit?username=${user.username}">
+                <a class="btn btn-warning btn-sm" type="button" href="/edit?userName=${user.username}">
                     <i class="fa fa-pencil"></i>
                 </a>
-            <c:if test="${user.username != currentUser.username}">
-                <button
-                        class="btn btn-danger btn-sm"
-                        type="button" href="/user/delete?username=${user.username}"
-                        data-bs-toggle="modal"
-                        data-bs-target="#delete-modal-${user.id}">
-                    <i class="fa fa-trash"></i>
-                </button>
-            </c:if>
+                <c:if test="${username != user.username}">
+                    <a class="btn btn-danger btn-sm" type="button"
+                       href="/delete?userName=${user.username}"
+                       >
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </c:if>
             </div>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-</body>
+</div>
 </div>
 </body>
 </html>

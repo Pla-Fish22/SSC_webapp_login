@@ -27,7 +27,6 @@ public class SecurityService {
 
     public void logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        session.removeAttribute("username");
         session.invalidate();
     }
 
