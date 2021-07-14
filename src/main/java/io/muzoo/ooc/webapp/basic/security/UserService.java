@@ -21,6 +21,9 @@ public class UserService {
     private final String FIND_ALL_QUERY = "SELECT * FROM user_tbl;";
     private final String INSERT_USER_QUERY = "INSERT INTO user_tbl (username, password, firstname,lastname) VALUES (?,?,?,?);";
     private final String DELETE_USER_QUERY = "DELETE FROM user_tbl where username=?;";
+    private final String EDIT_PASSWORD_QUERY = "UPDATE user_tbl SET password = ? WHERE username = ?;";
+    private final String EDIT_FIRSTNAME_QUERY = "UPDATE user_tbl SET firstname = ? WHERE username = ?;";
+    private final String EDIT_LASTNAME_QUERY = "UPDATE user_tbl SET lastname = ? WHERE username = ?;";
 
     public User findByUsername(String username){
         try {
@@ -125,6 +128,54 @@ public class UserService {
             return;
         }
 
+
+    }
+
+    public void editPassword(String oldPassword, String newPassword){
+        String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+        try {
+            Connection connection = databaseManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(EDIT_PASSWORD_QUERY);
+            ps.setString(1, hashedPassword);
+            ps.setString(2, oldPassword);
+            ps.executeUpdate();
+            connection.commit();
+            ps.close();
+            connection.close();
+        } catch (Exception e) {
+            return;
+        }
+    }
+
+    public void editFirstname(String oldFirstname, String newFirstname){
+        try {
+            Connection connection = databaseManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(EDIT_FIRSTNAME_QUERY);
+            ps.setString(1, newFirstname);
+            ps.setString(2, oldFirstname);
+            ps.executeUpdate();
+            connection.commit();
+            ps.close();
+            connection.close();
+        } catch (Exception e) {
+            return;
+        }
+
+    }
+
+    public void editLastname(String oldLastname, String newLastname){
+        try {
+            Connection connection = databaseManager.getConnection();
+            PreparedStatement ps = connection.prepareStatement(EDIT_LASTNAME_QUERY);
+            ps.setString(1, newLastname);
+            ps.setString(2, oldLastname);
+            ps.executeUpdate();
+            connection.commit();
+            ps.close();
+            connection.close();
+        } catch (Exception e) {
+            return;
+        }
 
     }
     
